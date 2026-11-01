@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: air-travel
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: AIRTRAVEL_SECRET
+        generateValue: true
+      - key: AIRTRAVEL_OWNER_PASSWORD
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false

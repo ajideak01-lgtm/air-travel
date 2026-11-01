@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Air Travel — Aviation Community</title>
+<link rel="stylesheet" href="/static/style.css?v=welcome-ad10">
+</head>
+<body>
+<div id="welcome" class="welcome">
+  <div class="welcome-card">
+    <img class="airtravel-logo welcome-logo" src="/static/air_travel_logo.png" alt="Air Travel Online Agency logo">
+    <div class="eyebrow">THE AVIATION COMMUNITY · 10-SECOND WELCOME AD</div>
+    <h1>Air Travel</h1><p class="welcome-copy">Connect with aviation people. Share the journey. Follow the skies.</p>
+    <div class="promo-strip"><span>✈</span><span>CHAT · SHARE · TRACK · DISCOVER</span><span>✦</span></div>
+    <div id="entryAd" class="entry-ad" aria-live="polite"><span class="ad-label">AIR TRAVEL PRESENTS</span><b>Take your passion for aviation further.</b><p>Explore aircraft, meet the aviation community, and ask Air Travel AI.</p><small id="adCountdown">Your welcome message is ready.</small></div>
+    <div class="welcome-actions"><button class="primary-btn" id="enterBtn">Enter Air Travel <span>→</span></button><button class="sound-btn" id="musicToggle" type="button" aria-pressed="false">♫ Turn waiting music on</button></div>
+    <small>Welcome aboard • Built for aviation enthusiasts</small>
+  </div>
+</div>
+<header class="topbar">
+  <a class="brand" href="#"><img class="airtravel-logo header-logo" src="/static/air_travel_logo.png" alt="Air Travel logo"><span>air<span>travel</span><small>ONLINE AGENCY</small></span></a>
+  <nav><button class="nav active" data-page="community">Community</button><button class="nav" data-page="tracker">Flight tracker</button><button class="nav" data-page="assistant">AI assistant</button><button class="nav" data-page="auth">Sign in / Join</button><button class="nav" data-page="owner">Owner</button></nav>
+  <div class="online"><i></i>{% if signed_in %}Hi, {{ username|e }}{% else %}Join the community{% endif %}</div>
+</header>
+<main>
+<section class="hero">
+ <div><div class="eyebrow">YOUR WORLD ABOVE THE CLOUDS</div><h2>Where aviation<br><em>connects.</em></h2><p>Meet pilots and aviation fans, exchange photos, explore flight data and learn with Air Travel AI.</p><button class="primary-btn" onclick="showPage('community')">Explore community <span>→</span></button></div>
+ <div class="hero-art"><div class="orbit orbit1"></div><div class="orbit orbit2"></div><div class="plane">✈</div><div class="radar-label">AIR TRAVEL / 001</div><div class="coord">06°31'N&nbsp; 03°22'E</div></div>
+</section>
+<section id="community" class="page active">
+ <div class="section-head"><div><div class="eyebrow">THE HANGAR</div><h2>Community chat</h2><p>Share updates, ask questions and post aviation pictures.</p></div><span class="pill">● Community room</span></div>
+ <div class="chat-layout">
+  <aside class="side-card"><h3>Channels</h3><button class="channel selected">✈ General aviation <b>12</b></button><button class="channel">◉ Flight spotting</button><button class="channel">▤ Pilot lounge</button><button class="channel">⌁ Airports & routes</button><div class="side-note"><b>Community reminder</b><p>Never post private flight, passenger, crew or security information.</p></div></aside>
+  <div class="chat-card"><div class="chat-title"><div><b>General aviation</b><small>Open community conversation</small></div><span class="live-tag">DEMO</span></div>
+   <div id="messages" class="messages"></div>
+   <form id="chatForm" class="composer"><input id="nameInput" maxlength="28" placeholder="Your display name" value="{{ username|e if username else 'Sign in first' }}" readonly><label class="attach">＋<input type="file" id="imageInput" accept="image/png,image/jpeg,image/gif,image/webp" hidden></label><input id="messageInput" maxlength="600" placeholder="Share something with the community…"><button class="send-btn">Send ↑</button></form>
+   <div class="chat-foot">Images up to 8 MB · Be kind and keep it aviation-focused</div>
+  </div>
+ </div>
+</section>
+<section id="tracker" class="page">
+ <div class="section-head"><div><div class="eyebrow">ABOVE THE HORIZON</div><h2>Flight tracker</h2><p>Aircraft reported by a public ADS-B feed near Lagos, when available.</p></div><span id="flightStatus" class="pill warning">CONNECTING TO ADS-B…</span></div>
+ <div class="tracker-grid"><div class="map-card"><div class="map-top"><b>West Africa airspace</b><span>Illustrative map</span></div><div id="flightMap" style="height:440px;width:100%;border-radius:0 0 18px 18px;z-index:1"></div><div class="map-legend"><span>✈ ADS-B reports (when available)</span><span>Positions can be delayed or incomplete</span></div></div>
+ <div class="flight-panel"><div class="flight-panel-head"><b>Aircraft overview</b><span id="flightCount">04 flights</span></div><div id="flightList"></div><div class="data-note">Public ADS-B feed is best-effort and may be delayed, incomplete, or unavailable. Never use this display for navigation, separation, or operational decisions.</div></div></div>
+</section>
+<section id="assistant" class="page">
+ <div class="section-head"><div><div class="eyebrow">YOUR AVIATION COPILOT</div><h2>Air Travel AI</h2><p>Ask about aviation concepts and how to use the platform.</p></div><span id="aiMode" class="pill">✦ AI READY</span></div>
+ <div class="ai-card"><div class="ai-orb">✦</div><div class="ai-intro"><h3>How can I help you today?</h3><p>Ask a question about aviation, flight tracking or the Air Travel community.</p></div><div class="suggestions"><button>What is ADS-B?</button><button>Explain flight levels</button><button>How does flight tracking work?</button></div><div id="aiAnswer" class="ai-answer">Hello! I’m Air Travel AI. Ask me anything about aviation basics.</div><form id="aiForm" class="ai-form"><input id="aiPrompt" placeholder="Ask Air Travel AI…"><button class="primary-btn">Ask AI ↑</button></form><small>AI responses are educational only, not flight-operation or safety instructions.</small></div>
+</section>
+<section id="auth" class="page">
+ <div class="section-head"><div><div class="eyebrow">YOUR AIR TRAVEL ACCOUNT</div><h2>Sign in or join</h2><p>Create an account to join the community and share aviation photos.</p></div><span class="pill">MEMBER ACCESS</span></div>
+ <div class="auth-grid">
+ {% if signed_in %}<div class="owner-card auth-card"><div class="owner-icon">✓</div><h3>Welcome aboard, {{ username|e }}!</h3><p>You are signed in and can post messages and pictures in Community chat.</p><form action="/auth/logout" method="post"><button class="outline-btn">Sign out</button></form></div>
+ {% else %}<div class="owner-card auth-card"><h3>Create your account</h3><p>Choose a username, add an email and use a password with at least 8 characters.</p><form action="/auth/signup" method="post" class="auth-form"><input name="username" minlength="3" maxlength="28" placeholder="Username (3+ characters)" required><input name="email" type="email" placeholder="Email address" required><input name="password" type="password" minlength="8" placeholder="Password (8+ characters)" required><button class="primary-btn">Create account →</button></form></div>
+ <div class="owner-card auth-card"><h3>Already a member?</h3><p>Sign in with your username or email address.</p><form action="/auth/login" method="post" class="auth-form"><input name="identity" placeholder="Username or email" required><input name="password" type="password" placeholder="Password" required><button class="primary-btn">Sign in →</button></form></div>{% endif %}
+ <p id="authNotice" class="auth-notice"></p></div>
+</section>
+<section id="owner" class="page">
+ <div class="section-head"><div><div class="eyebrow">CONTROL CENTRE</div><h2>Owner dashboard</h2><p>Manage your Air Travel prototype.</p></div><span class="pill">OWNER ACCESS</span></div>
+ <div class="owner-card" id="ownerBox">
+ {% if owner %}
+ <div class="owner-welcome"><div><h3>Welcome, Akinola Ajide.</h3><p>Founder &amp; Owner of Air Travel · Signed in to this demo session.</p></div><form action="/owner/logout" method="post"><button class="outline-btn">Sign out</button></form></div>
+ <div class="stats" id="stats"><div><small>Messages</small><b>—</b></div><div><small>Image uploads</small><b>—</b></div><div><small>Demo flights</small><b>—</b></div></div>
+ <div class="owner-tip"><b>Production checklist</b><p>Add secure user accounts, moderation tools, a database, cloud image storage, and a licensed live flight-data integration before inviting the public.</p></div>
+ {% else %}
+ <div class="owner-login"><div class="owner-icon">♙</div><h3>Akinola Ajide</h3><p class="owner-role">Air Travel Founder &amp; Owner</p><h3 class="login-heading">Owner sign in</h3><p>Sign in to view the private dashboard for this local prototype.</p><form action="/owner/login" method="post"><input type="password" name="password" placeholder="Owner password" required><button class="primary-btn">Sign in →</button></form><small>First-run demo password: <code>change-this-password</code>. Set AIRTRAVEL_OWNER_PASSWORD before running for a different local password. Do not deploy this demo password.</small></div>
+ {% endif %}
+ </div>
+</section>
+</main>
+<footer><span><img class="footer-logo" src="/static/air_travel_logo.png" alt=""> AIR TRAVEL</span><span>Connect above the ordinary.</span><span>Owned by Akinola Ajide</span></footer>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><script>window.AIRTRAVEL_SIGNED_IN = {{ 'true' if signed_in else 'false' }};</script><script src="/static/app.js?v=welcome-ad10"></script>
+</body></html>
