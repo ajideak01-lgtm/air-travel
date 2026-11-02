@@ -1,0 +1,16 @@
+AIR TRAVEL VIDEO ASSETS
+
+1) air_travel_10s_ad.mp4
+Duration: 10 seconds.
+Style: cinematic branded advert with dramatic scene changes and original instrumental music.
+Voice: synthetic female British English Received Pronunciation (RP) accent.
+Narration: “The world is waiting. Welcome to Air Travel. Explore, connect and discover with your AI travel guide. Fly, connect, explore.”
+
+2) air_travel_ai_explainer.mp4
+Duration: approximately 46 seconds.
+Style: illustrated AI guide, chapter cards, captions and synthetic narration.
+Voice: synthetic female British English Received Pronunciation (RP) accent.
+Narration: welcomes visitors; introduces destination discovery, budget and packing tools, the member community and flight information; introduces the AIR TRAVEL assistant; and teases future additions.
+Background audio: original soft cinematic ambient bed mixed below the narration.
+
+Both videos now use synthetic female British English Received Pronunciation (RP) narration. The illustrated character is not a live avatar and is not lip-synced.
